@@ -1,6 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Platform, Pressable, ScrollView, View } from 'react-native';
 import * as React from 'react';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import { LanguageSelector } from '@/components/language-selector';
 import { ThemePicker } from '@/components/theme-picker';
@@ -22,6 +28,22 @@ export function Navbar() {
   const { t } = useTranslation();
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+
+  const menuProgress = useSharedValue(0);
+  const menuHeight = useSharedValue(0);
+
+  const menuStyle = useAnimatedStyle(() => ({
+    height: menuHeight.value * menuProgress.value,
+    opacity: menuProgress.value,
+    transform: [{ translateY: (menuProgress.value - 1) * 12 }],
+  }));
+
+  React.useEffect(() => {
+    menuProgress.value = withTiming(open ? 1 : 0, {
+      duration: 260,
+      easing: Easing.out(Easing.cubic),
+    });
+  }, [open, menuProgress]);
 
   React.useEffect(() => {
     if (Platform.OS !== 'web' || typeof window === 'undefined') return;
@@ -49,8 +71,10 @@ export function Navbar() {
 
         <View className="hidden flex-row items-center gap-1 md:flex">
           {navItems.map((item) => (
-            <Pressable key={item.key} className="hover:bg-accent rounded-md px-3 py-2">
-              <Text className="text-sm font-medium text-muted-foreground">{t(item.key)}</Text>
+            <Pressable key={item.key} className="group hover:bg-accent rounded-md px-3 py-2">
+              <Text className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
+                {t(item.key)}
+              </Text>
             </Pressable>
           ))}
         </View>
@@ -70,25 +94,33 @@ export function Navbar() {
         </View>
       </View>
 
-      {open && (
-        <ScrollView className="bg-background/95 max-h-[70vh] border-t border-border px-4 py-4 backdrop-blur-xl md:hidden">
-          <View className="gap-1">
-            {navItems.map((item) => (
-              <Pressable key={item.key} className="active:bg-accent rounded-md px-3 py-3">
-                <Text className="text-base font-medium text-foreground">{t(item.key)}</Text>
-              </Pressable>
-            ))}
-            <View className="mt-3 gap-2">
-              <Button variant="outline" className="w-full">
-                <Text>{t('nav.signIn')}</Text>
-              </Button>
-              <Button className="w-full">
-                <Text>{t('nav.getStarted')}</Text>
-              </Button>
+      <Animated.View
+        className="overflow-hidden md:hidden"
+        style={menuStyle}
+        pointerEvents={open ? 'auto' : 'none'}>
+        <View
+          onLayout={(event) => {
+            menuHeight.value = event.nativeEvent.layout.height;
+          }}>
+          <ScrollView className="bg-background/95 max-h-[70vh] border-t border-border px-4 py-4 backdrop-blur-xl">
+            <View className="gap-1">
+              {navItems.map((item) => (
+                <Pressable key={item.key} className="active:bg-accent rounded-md px-3 py-3">
+                  <Text className="text-base font-medium text-foreground">{t(item.key)}</Text>
+                </Pressable>
+              ))}
+              <View className="mt-3 gap-2">
+                <Button variant="outline" className="w-full">
+                  <Text>{t('nav.signIn')}</Text>
+                </Button>
+                <Button className="w-full">
+                  <Text>{t('nav.getStarted')}</Text>
+                </Button>
+              </View>
             </View>
-          </View>
-        </ScrollView>
-      )}
+          </ScrollView>
+        </View>
+      </Animated.View>
     </View>
   );
 }

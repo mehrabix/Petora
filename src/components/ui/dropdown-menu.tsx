@@ -51,7 +51,7 @@ function DropdownMenuSubTrigger({
         className={cn(
           'active:bg-accent group flex flex-row items-center rounded-sm px-2 py-2 sm:py-1.5',
           Platform.select({
-            web: 'focus:bg-accent focus:text-accent-foreground cursor-default outline-none [&_svg]:pointer-events-none',
+            web: 'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-default outline-none [&_svg]:pointer-events-none',
           }),
           className,
           open && 'bg-accent',
@@ -157,8 +157,9 @@ function DropdownMenuItem({
           'active:bg-accent group relative flex flex-row items-center gap-2 rounded-sm px-2 py-2 sm:py-1.5',
           Platform.select({
             web: cn(
-              'focus:bg-accent focus:text-accent-foreground cursor-default outline-none data-[disabled]:pointer-events-none',
-              variant === 'destructive' && 'focus:bg-destructive/10 dark:focus:bg-destructive/20'
+              'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-default outline-none data-[disabled]:pointer-events-none',
+              variant === 'destructive' &&
+                'hover:bg-destructive/10 hover:text-destructive focus:bg-destructive/10 focus:text-destructive dark:hover:bg-destructive/20 dark:focus:bg-destructive/20'
             ),
           }),
           variant === 'destructive' && 'active:bg-destructive/10 dark:active:bg-destructive/20',
@@ -185,7 +186,7 @@ function DropdownMenuCheckboxItem({
         className={cn(
           'active:bg-accent group relative flex flex-row items-center gap-2 rounded-sm py-2 pl-8 pr-2 sm:py-1.5',
           Platform.select({
-            web: 'focus:bg-accent focus:text-accent-foreground cursor-default outline-none data-[disabled]:pointer-events-none',
+            web: 'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-default outline-none data-[disabled]:pointer-events-none',
           }),
           props.disabled && 'opacity-50',
           className
@@ -221,7 +222,7 @@ function DropdownMenuRadioItem({
         className={cn(
           'active:bg-accent group relative flex flex-row items-center gap-2 rounded-sm py-2 pl-8 pr-2 sm:py-1.5',
           Platform.select({
-            web: 'focus:bg-accent focus:text-accent-foreground cursor-default outline-none data-[disabled]:pointer-events-none',
+            web: 'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-default outline-none data-[disabled]:pointer-events-none',
           }),
           props.disabled && 'opacity-50',
           className

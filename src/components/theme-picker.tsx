@@ -53,7 +53,7 @@ export function ThemePicker() {
               key={name}
               onPress={() => setAccent(name)}
               className={cn(
-                'h-7 w-7 items-center justify-center rounded-full border border-border/60',
+                'h-7 w-7 items-center justify-center rounded-full border border-border/60 transition-transform hover:scale-110',
                 accent === name && 'ring-ring ring-2 ring-offset-2 ring-offset-background'
               )}
               style={{ backgroundColor: accentHex[name] }}>

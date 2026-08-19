@@ -445,11 +445,11 @@ function CTA() {
           <Text className="shrink text-base leading-7 text-primary-foreground/70">{t('cta.description')}</Text>
         </View>
         <View className="w-full gap-3 sm:w-auto sm:flex-row">
-          <Button size="lg" className="bg-background w-full sm:w-auto">
-            <Text className="font-medium text-foreground">{t('cta.primary')}</Text>
+          <Button size="lg" variant="inverted" className="w-full sm:w-auto">
+            <Text className="font-medium">{t('cta.primary')}</Text>
           </Button>
-          <Button size="lg" variant="outline" className="border-primary-foreground/30 w-full sm:w-auto">
-            <Text className="font-medium text-primary-foreground">{t('cta.secondary')}</Text>
+          <Button size="lg" variant="invertedOutline" className="w-full sm:w-auto">
+            <Text className="font-medium">{t('cta.secondary')}</Text>
           </Button>
         </View>
       </View>

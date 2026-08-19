@@ -1,43 +1,50 @@
 import { ScrollView, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { LanguageSelector } from '@/components/language-selector';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Icon } from '@/components/ui/icon';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/ui/text';
-import { cn } from '@/lib/utils';
+import { useAppLanguage } from '@/i18n/use-app-language';
 
-function PawMark({ className }: { className?: string }) {
-  return (
-    <View className={cn('flex-row items-center', className)}>
-      <View className="flex-col gap-[3px]">
-        <View className="flex-row gap-[3px]">
-          <View className="h-2.5 w-2.5 rounded-full bg-current" />
-          <View className="h-2.5 w-2.5 rounded-full bg-current" />
-        </View>
-        <View className="h-2.5 w-2.5 self-start rounded-full bg-current" />
-      </View>
-      <View className="-ml-[2px] h-8 w-7 rounded-t-[10px] rounded-b-[14px] bg-current" />
-    </View>
-  );
-}
+import {
+  Cat,
+  Dog,
+  Heart,
+  HeartPulse,
+  PawPrint,
+  Scissors,
+  Search,
+  ShieldCheck,
+  Star,
+  Stethoscope,
+} from 'lucide-react-native';
 
 function Header() {
+  const { t } = useTranslation();
   return (
-    <View className="flex-row items-center justify-between">
-      <View className="flex-row items-center gap-2">
-        <PawMark className="text-primary" />
-        <Text className="text-lg font-extrabold tracking-tight text-foreground">Petora</Text>
-      </View>
-      <View className="flex-row items-center gap-2">
-        <Button variant="ghost" size="sm">
-          <Text>Sign in</Text>
-        </Button>
-        <Button size="sm">
-          <Text className="font-semibold">Get started</Text>
-        </Button>
+    <View className="border-border bg-background border-b">
+      <View className="w-full flex-row items-center justify-between px-4 py-3 md:px-10 lg:px-16">
+        <View className="flex-row items-center gap-2">
+          <Icon as={PawPrint} size={20} className="text-foreground" />
+          <Text className="text-lg font-semibold tracking-tight text-foreground">Petora</Text>
+        </View>
+
+        <View className="flex-row items-center gap-2">
+          <ThemeToggle />
+          <LanguageSelector />
+          <Button variant="ghost" className="hidden sm:flex">
+            <Text>{t('nav.signIn')}</Text>
+          </Button>
+          <Button>
+            <Text>{t('nav.getStarted')}</Text>
+          </Button>
+        </View>
       </View>
     </View>
   );
@@ -53,135 +60,140 @@ function SectionHeading({
   description?: string;
 }) {
   return (
-    <View className="items-center gap-2 px-2">
-      <Text className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{eyebrow}</Text>
-      <Text className="text-center text-3xl font-extrabold tracking-tight text-foreground">
-        {title}
-      </Text>
-      {description && (
-        <Text className="max-w-md text-center text-base leading-6 text-muted-foreground">
-          {description}
-        </Text>
-      )}
+    <View className="w-full gap-2">
+      <Text className="text-sm font-medium text-muted-foreground">{eyebrow}</Text>
+      <Text className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">{title}</Text>
+      {description && <Text className="text-sm leading-6 text-muted-foreground">{description}</Text>}
     </View>
   );
 }
 
 const stats = [
-  { value: '2,400+', label: 'Pets adopted' },
-  { value: '98%', label: 'Happy families' },
-  { value: '12 yrs', label: 'Of trusted care' },
+  { key: 'stats.adoptedValue', labelKey: 'stats.adoptedLabel' },
+  { key: 'stats.happyValue', labelKey: 'stats.happyLabel' },
+  { key: 'stats.yearsValue', labelKey: 'stats.yearsLabel' },
 ];
 
 function Hero() {
+  const { t } = useTranslation();
   return (
-    <View className="overflow-hidden rounded-3xl border border-border bg-accent">
-      <View className="absolute -top-12 -right-10 h-40 w-40 rounded-full bg-primary/20" />
-      <View className="absolute -bottom-16 -left-10 h-44 w-44 rounded-full bg-secondary" />
-      <View className="relative z-10 gap-4 px-6 py-12 sm:px-14 sm:py-16">
-        <View className="items-center gap-4">
-          <Badge variant="outline" className="border-primary/30 bg-white/60">
-            <Text className="text-xs font-semibold tracking-wide text-primary">
-              Adoption reimagined
-            </Text>
+    <View className="border-border border-b">
+      <View className="w-full flex-row flex-wrap items-center gap-10 px-4 py-16 md:px-10 md:py-24 lg:px-16">
+        <View className="w-full flex-1 basis-[340px] gap-6">
+          <Badge variant="outline" className="self-start">
+            <Text className="text-xs">{t('hero.badge')}</Text>
           </Badge>
-          <PawMark className="text-primary" />
-          <Text className="max-w-xl text-center text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl">
-            Every pet deserves a forever home
+          <View className="gap-2">
+            <Text className="text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+              {t('hero.titleLine1')}
+            </Text>
+            <Text className="text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+              {t('hero.titleLine2')}
+            </Text>
+          </View>
+          <Text className="max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
+            {t('hero.description')}
           </Text>
-          <Text className="max-w-md text-center text-base leading-7 text-muted-foreground sm:text-lg">
-            Discover thousands of adorable rescues and pedigree pets. From playful puppies to cuddly
-            kittens — your new best friend is waiting.
-          </Text>
-          <View className="mt-2 flex-row flex-wrap justify-center gap-3">
+          <View className="flex-row flex-wrap gap-3">
             <Button size="lg">
-              <Text className="font-semibold">Browse pets</Text>
+              <Icon as={Search} size={18} className="text-primary-foreground" />
+              <Text className="font-medium">{t('hero.primaryCta')}</Text>
             </Button>
             <Button size="lg" variant="outline">
-              <Text className="font-semibold">How it works</Text>
+              <Text className="font-medium">{t('hero.secondaryCta')}</Text>
             </Button>
+          </View>
+
+          <View className="flex-row flex-wrap gap-x-10 gap-y-4 pt-2">
+            {stats.map((stat) => (
+              <View key={stat.key} className="gap-1">
+                <Text className="text-2xl font-semibold tracking-tight text-foreground">
+                  {t(stat.key)}
+                </Text>
+                <Text className="text-sm text-muted-foreground">{t(stat.labelKey)}</Text>
+              </View>
+            ))}
           </View>
         </View>
 
-        <View className="mt-4 flex-row items-center justify-center">
-          {stats.map((stat, index) => (
-            <View key={stat.label} className="flex-row items-center">
-              {index > 0 && <View className="mx-4 h-8 w-px bg-border sm:mx-6" />}
-              <View className="items-center">
-                <Text className="text-2xl font-extrabold text-foreground">{stat.value}</Text>
-                <Text className="mt-0.5 text-xs text-muted-foreground">{stat.label}</Text>
+        <Card className="w-full flex-1 basis-[300px]">
+          <CardContent className="gap-5 p-6">
+            <View className="flex-row items-center justify-between">
+              <View>
+                <Text className="text-lg font-semibold text-foreground">Milo</Text>
+                <Text className="text-sm text-muted-foreground">Golden Retriever</Text>
+              </View>
+              <Badge variant="outline">
+                <Text className="text-xs">{t('pets.ready')}</Text>
+              </Badge>
+            </View>
+
+            <View className="bg-muted h-48 items-center justify-center rounded-lg">
+              <Icon as={Dog} size={96} strokeWidth={1.25} className="text-muted-foreground" />
+            </View>
+
+            <View className="gap-3">
+              <View className="flex-row items-center justify-between">
+                <Text className="text-sm text-foreground">Vet-checked</Text>
+                <Icon as={ShieldCheck} size={16} className="text-muted-foreground" />
+              </View>
+              <Separator />
+              <View className="flex-row items-center justify-between">
+                <Text className="text-sm text-foreground">Microchipped</Text>
+                <Icon as={HeartPulse} size={16} className="text-muted-foreground" />
+              </View>
+              <Separator />
+              <View className="flex-row items-center justify-between">
+                <Text className="text-sm text-foreground">House trained</Text>
+                <Icon as={Heart} size={16} className="text-muted-foreground" />
               </View>
             </View>
-          ))}
-        </View>
+          </CardContent>
+        </Card>
       </View>
     </View>
   );
 }
 
 const pets = [
-  {
-    name: 'Milo',
-    breed: 'Golden Retriever',
-    age: '2 yrs',
-    price: '$350',
-    color: 'bg-primary/15',
-  },
-  {
-    name: 'Luna',
-    breed: 'British Shorthair',
-    age: '1 yr',
-    price: '$280',
-    color: 'bg-secondary',
-  },
-  {
-    name: 'Bella',
-    breed: 'French Bulldog',
-    age: '8 mo',
-    price: '$420',
-    color: 'bg-primary/10',
-  },
-  {
-    name: 'Oreo',
-    breed: 'Labrador',
-    age: '3 yrs',
-    price: '$300',
-    color: 'bg-accent',
-  },
+  { name: 'Milo', breed: 'Golden Retriever', age: '2 yrs', price: '$350', icon: Dog },
+  { name: 'Luna', breed: 'British Shorthair', age: '1 yr', price: '$280', icon: Cat },
+  { name: 'Bella', breed: 'French Bulldog', age: '8 mo', price: '$420', icon: Dog },
+  { name: 'Oreo', breed: 'Labrador', age: '3 yrs', price: '$300', icon: Cat },
 ];
 
 function FeaturedPets() {
+  const { t } = useTranslation();
   return (
-    <View className="gap-8">
+    <View className="w-full gap-8 px-4 md:px-10 lg:px-16">
       <SectionHeading
-        eyebrow="Meet our pets"
-        title="Featured companions"
-        description="Hand-picked pets looking for a loving family, each vet-checked and ready to go home."
+        eyebrow={t('pets.eyebrow')}
+        title={t('pets.title')}
+        description={t('pets.description')}
       />
       <View className="flex-row flex-wrap gap-4">
         {pets.map((pet) => (
-          <Card key={pet.name} className="w-full gap-4 rounded-2xl p-5 sm:w-[calc(50%-0.5rem)]">
-            <View className="flex-row items-center gap-4">
-              <Avatar alt={`${pet.name} profile`} className="h-16 w-16 rounded-2xl">
-                <AvatarFallback className={cn('bg-primary/15', pet.color)}>
-                  <Text className="text-xl font-bold text-primary">{pet.name[0]}</Text>
-                </AvatarFallback>
-              </Avatar>
-              <View className="flex-1">
-                <Text className="text-lg font-bold text-foreground">{pet.name}</Text>
-                <Text className="text-sm text-muted-foreground">{pet.breed}</Text>
+          <Card key={pet.name} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+            <CardContent className="gap-4 p-5">
+              <View className="bg-muted h-32 items-center justify-center rounded-lg">
+                <Icon as={pet.icon} size={56} strokeWidth={1.25} className="text-muted-foreground" />
               </View>
-            </View>
-            <Separator />
-            <View className="flex-row items-center justify-between">
-              <Badge variant="secondary" className="bg-primary/10">
-                <Text className="text-xs font-medium text-primary">{pet.age}</Text>
-              </Badge>
-              <Text className="text-base font-extrabold text-primary">{pet.price}</Text>
-            </View>
-            <Button variant="outline" size="sm" className="w-full">
-              <Text className="font-medium">View {pet.name}</Text>
-            </Button>
+              <View className="flex-row items-start justify-between gap-2">
+                <View className="gap-1">
+                  <Text className="text-base font-semibold text-foreground">{pet.name}</Text>
+                  <Text className="text-sm text-muted-foreground">{pet.breed}</Text>
+                </View>
+                <Text className="text-base font-semibold text-foreground">{pet.price}</Text>
+              </View>
+              <View className="flex-row items-center justify-between">
+                <Badge variant="secondary">
+                  <Text className="text-xs">{pet.age}</Text>
+                </Badge>
+                <Button variant="ghost" size="sm">
+                  <Text className="text-sm">{t('pets.view', { name: pet.name })}</Text>
+                </Button>
+              </View>
+            </CardContent>
           </Card>
         ))}
       </View>
@@ -190,54 +202,30 @@ function FeaturedPets() {
 }
 
 const services = [
-  {
-    title: 'Adoption',
-    initial: 'A',
-    description:
-      'Thoughtful matching connects you with pets whose energy, age, and personality fit your home.',
-    color: 'bg-primary/15',
-    textColor: 'text-primary',
-  },
-  {
-    title: 'Grooming & care',
-    initial: 'G',
-    description:
-      'Professional grooming, nutrition plans, and supplies to keep every pet looking and feeling great.',
-    color: 'bg-secondary',
-    textColor: 'text-secondary-foreground',
-  },
-  {
-    title: 'Vet & health',
-    initial: 'V',
-    description:
-      'Every pet is fully vaccinated, microchipped, and checked by our partner veterinarians.',
-    color: 'bg-accent',
-    textColor: 'text-accent-foreground',
-  },
+  { titleKey: 'services.adoption.title', descriptionKey: 'services.adoption.description', icon: Heart },
+  { titleKey: 'services.grooming.title', descriptionKey: 'services.grooming.description', icon: Scissors },
+  { titleKey: 'services.vet.title', descriptionKey: 'services.vet.description', icon: Stethoscope },
 ];
 
 function Services() {
+  const { t } = useTranslation();
   return (
-    <View className="gap-8">
+    <View className="w-full gap-8 px-4 md:px-10 lg:px-16">
       <SectionHeading
-        eyebrow="Why Petora"
-        title="Care from paw to heart"
-        description="We go beyond adoption with services that support pets for a lifetime."
+        eyebrow={t('services.eyebrow')}
+        title={t('services.title')}
+        description={t('services.description')}
       />
       <View className="flex-row flex-wrap gap-4">
         {services.map((service) => (
-          <Card key={service.title} className="w-full gap-3 rounded-2xl p-5 sm:w-[calc(33.333%-0.7rem)]">
-            <View
-              className={cn(
-                'h-12 w-12 items-center justify-center rounded-xl',
-                service.color
-              )}>
-              <Text className={cn('text-xl font-extrabold', service.textColor)}>
-                {service.initial}
-              </Text>
-            </View>
-            <Text className="text-base font-bold text-foreground">{service.title}</Text>
-            <Text className="text-sm leading-5 text-muted-foreground">{service.description}</Text>
+          <Card key={service.titleKey} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.7rem)]">
+            <CardHeader className="gap-4">
+              <View className="bg-muted h-10 w-10 items-center justify-center rounded-lg">
+                <Icon as={service.icon} size={20} className="text-muted-foreground" />
+              </View>
+              <CardTitle>{t(service.titleKey)}</CardTitle>
+              <CardDescription>{t(service.descriptionKey)}</CardDescription>
+            </CardHeader>
           </Card>
         ))}
       </View>
@@ -246,45 +234,42 @@ function Services() {
 }
 
 const testimonials = [
-  {
-    name: 'Sarah & Buddy',
-    initials: 'SB',
-    quote:
-      'Adopting Buddy through Petora was the best decision. The team matched us perfectly and supported us every step of the way.',
-    color: 'bg-primary/15',
-  },
-  {
-    name: 'David M.',
-    initials: 'DM',
-    quote:
-      'From the vet check to the welcome kit, everything felt personal. Luna settled in within a day — she finally feels at home.',
-    color: 'bg-secondary',
-  },
+  { nameKey: 'testimonials.sarah.name', quoteKey: 'testimonials.sarah.quote' },
+  { nameKey: 'testimonials.david.name', quoteKey: 'testimonials.david.quote' },
 ];
 
 function Testimonials() {
+  const { t } = useTranslation();
   return (
-    <View className="gap-8">
+    <View className="w-full gap-8 px-4 md:px-10 lg:px-16">
       <SectionHeading
-        eyebrow="Happy tails"
-        title="Loved by families"
-        description="Real stories from families who found their forever friend with us."
+        eyebrow={t('testimonials.eyebrow')}
+        title={t('testimonials.title')}
+        description={t('testimonials.description')}
       />
       <View className="flex-row flex-wrap gap-4">
         {testimonials.map((item) => (
-          <Card key={item.name} className="w-full gap-3 rounded-2xl p-5 sm:w-[calc(50%-0.5rem)]">
-            <View className="flex-row items-center gap-3">
-              <Avatar alt={`${item.name} avatar`} className="h-11 w-11">
-                <AvatarFallback className={cn('bg-primary/15', item.color)}>
-                  <Text className="text-sm font-bold text-primary">{item.initials}</Text>
-                </AvatarFallback>
-              </Avatar>
-              <View className="flex-1">
-                <Text className="text-sm font-bold text-foreground">{item.name}</Text>
-                <Text className="text-xs tracking-widest text-primary">★★★★★</Text>
+          <Card key={item.nameKey} className="w-full sm:w-[calc(50%-0.5rem)]">
+            <CardHeader className="gap-4">
+              <View className="flex-row items-center gap-1">
+                {[0, 1, 2, 3, 4].map((index) => (
+                  <Icon key={index} as={Star} size={15} className="fill-foreground text-foreground" />
+                ))}
               </View>
-            </View>
-            <Text className="text-sm leading-6 text-muted-foreground">{item.quote}</Text>
+              <Text className="text-sm leading-6 text-foreground">{t(item.quoteKey)}</Text>
+              <View className="flex-row items-center gap-3 border-t border-border pt-5">
+                <View className="bg-muted h-9 w-9 items-center justify-center rounded-full">
+                  <Text className="text-xs font-medium text-muted-foreground">
+                    {t(item.nameKey)
+                      .split(' ')
+                      .map((part) => part[0])
+                      .join('')
+                      .slice(0, 2)}
+                  </Text>
+                </View>
+                <Text className="text-sm font-medium text-foreground">{t(item.nameKey)}</Text>
+              </View>
+            </CardHeader>
           </Card>
         ))}
       </View>
@@ -293,61 +278,74 @@ function Testimonials() {
 }
 
 function Newsletter() {
+  const { t } = useTranslation();
   return (
-    <Card className="gap-5 rounded-3xl border-0 bg-primary p-8 sm:p-10">
-      <View className="items-center gap-3">
-        <Text className="text-center text-3xl font-extrabold tracking-tight text-primary-foreground">
-          Stay in the loop
-        </Text>
-        <Text className="max-w-md text-center text-base leading-6 text-primary-foreground/80">
-          Get adoption alerts and pet care tips delivered straight to your inbox.
-        </Text>
-      </View>
-      <View className="flex-row flex-wrap gap-3">
-        <Input
-          placeholder="you@example.com"
-          className="flex-1 border-transparent bg-white/90 text-foreground"
-        />
-        <Button className="bg-white">
-          <Text className="font-semibold text-primary">Subscribe</Text>
-        </Button>
-      </View>
-    </Card>
+    <View className="w-full px-4 md:px-10 lg:px-16">
+      <Card className="w-full">
+        <CardContent className="gap-5 p-6 md:p-10">
+          <View className="gap-2">
+            <Text className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+              {t('newsletter.title')}
+            </Text>
+            <Text className="text-sm leading-6 text-muted-foreground">{t('newsletter.description')}</Text>
+          </View>
+          <View className="flex-row flex-wrap items-center gap-3">
+            <Input placeholder={t('newsletter.placeholder')} className="flex-1" />
+            <Button size="lg">
+              <Text className="font-medium">{t('newsletter.subscribe')}</Text>
+            </Button>
+          </View>
+          <Text className="text-xs text-muted-foreground">{t('newsletter.note')}</Text>
+        </CardContent>
+      </Card>
+    </View>
   );
 }
 
 function Footer() {
+  const { t } = useTranslation();
   return (
-    <View className="border-t border-border pt-8">
-      <View className="flex-row items-center gap-2">
-        <PawMark className="text-primary" />
-        <Text className="text-base font-extrabold tracking-tight text-foreground">Petora</Text>
+    <View className="border-border border-t">
+      <View className="w-full gap-10 px-4 py-12 md:px-10 lg:px-16">
+        <View className="flex-row flex-wrap items-start justify-between gap-8">
+          <View className="gap-3">
+            <View className="flex-row items-center gap-2">
+              <Icon as={PawPrint} size={20} className="text-foreground" />
+              <Text className="text-lg font-semibold tracking-tight text-foreground">Petora</Text>
+            </View>
+            <Text className="max-w-sm text-sm leading-6 text-muted-foreground">
+              {t('footer.tagline')}
+            </Text>
+          </View>
+          <View className="flex-row flex-wrap gap-x-8 gap-y-2">
+            <Text className="text-sm text-muted-foreground">{t('footer.adopt')}</Text>
+            <Text className="text-sm text-muted-foreground">{t('footer.care')}</Text>
+            <Text className="text-sm text-muted-foreground">{t('footer.about')}</Text>
+            <Text className="text-sm text-muted-foreground">{t('footer.contact')}</Text>
+          </View>
+        </View>
+        <Text className="text-xs text-muted-foreground">{t('footer.copyright')}</Text>
       </View>
-      <View className="mt-4 flex-row flex-wrap gap-x-6 gap-y-2">
-        <Text className="text-sm text-muted-foreground">Adopt</Text>
-        <Text className="text-sm text-muted-foreground">Care</Text>
-        <Text className="text-sm text-muted-foreground">About</Text>
-        <Text className="text-sm text-muted-foreground">Contact</Text>
-      </View>
-      <Text className="mt-6 text-xs text-muted-foreground">
-        © 2026 Petora. Made with love for pets everywhere.
-      </Text>
     </View>
   );
 }
 
 export default function LandingScreen() {
+  const { isRTL } = useAppLanguage();
   return (
-    <ScrollView className="flex-1 bg-background" contentContainerStyle={{ flexGrow: 1 }}>
-      <View className="mx-auto w-full max-w-3xl flex-1 gap-14 px-5 pt-6 pb-16">
-        <Header />
+    <View className="bg-background flex-1" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
+      <Header />
+      <ScrollView
+        className="flex-1 bg-background"
+        contentContainerStyle={{ gap: 64, paddingBottom: 0 }}
+        showsVerticalScrollIndicator={false}>
         <Hero />
         <FeaturedPets />
         <Services />
         <Testimonials />
         <Newsletter />
         <Footer />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }

@@ -4,6 +4,9 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { Platform, Text as RNText, type Role } from 'react-native';
 
+import { useAppLanguage } from '@/i18n/use-app-language';
+import { getFontFamily } from '@/lib/fonts';
+
 const textVariants = cva(
   cn(
     'text-foreground text-base',
@@ -76,12 +79,15 @@ function Text({
   }) {
   const textClass = React.useContext(TextClassContext);
   const Component = asChild ? Slot : RNText;
+  const { isRTL } = useAppLanguage();
+  const fontFamily = getFontFamily(isRTL, cn(textVariants({ variant }), textClass, className));
   return (
     <Component
       className={cn(textVariants({ variant }), textClass, className)}
       role={variant ? ROLE[variant] : undefined}
       aria-level={variant ? ARIA_LEVEL[variant] : undefined}
       {...props}
+      style={[props.style, { fontFamily }]}
     />
   );
 }

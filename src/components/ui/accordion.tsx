@@ -119,24 +119,20 @@ function AccordionContent({
   children,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+  const { isExpanded } = AccordionPrimitive.useItemContext();
   return (
     <TextClassContext.Provider value="text-sm">
       <AccordionPrimitive.Content
         className={cn(
           'overflow-hidden',
           Platform.select({
-            web: 'data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up',
+            web: isExpanded ? 'animate-accordion-down' : 'animate-accordion-up',
           })
         )}
-        forceMount={Platform.OS === 'web'}
         {...props}>
         <Animated.View
-          entering={Platform.select({
-            native: FadeInDown.duration(200).reduceMotion(ReduceMotion.System),
-          })}
-          exiting={Platform.select({
-            native: FadeOutUp.duration(200).reduceMotion(ReduceMotion.System),
-          })}
+          entering={Platform.OS === 'web' ? undefined : FadeInDown.duration(200).reduceMotion(ReduceMotion.System)}
+          exiting={Platform.OS === 'web' ? undefined : FadeOutUp.duration(200).reduceMotion(ReduceMotion.System)}
           className={cn('pb-4', className)}>
           {children}
         </Animated.View>

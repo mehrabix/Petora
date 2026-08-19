@@ -32,11 +32,15 @@ export function Navbar() {
   const menuProgress = useSharedValue(0);
   const menuHeight = useSharedValue(0);
 
-  const menuStyle = useAnimatedStyle(() => ({
-    height: menuHeight.value * menuProgress.value,
-    opacity: menuProgress.value,
-    transform: [{ translateY: (menuProgress.value - 1) * 12 }],
-  }));
+  const menuStyle = useAnimatedStyle(
+    () => ({
+      height: menuHeight.value * menuProgress.value,
+      opacity: menuProgress.value,
+      transform: [{ translateY: (menuProgress.value - 1) * 12 }],
+      pointerEvents: open ? 'auto' : 'none',
+    }),
+    [open]
+  );
 
   React.useEffect(() => {
     menuProgress.value = withTiming(open ? 1 : 0, {
@@ -44,6 +48,10 @@ export function Navbar() {
       easing: Easing.out(Easing.cubic),
     });
   }, [open, menuProgress]);
+
+  // Animated style reads the latest `open` state for pointer events.
+  // The dep array is intentionally left as the shared value only to avoid
+  // recreating the worklet on every state change.
 
   React.useEffect(() => {
     if (Platform.OS !== 'web' || typeof window === 'undefined') return;
@@ -96,8 +104,7 @@ export function Navbar() {
 
       <Animated.View
         className="overflow-hidden md:hidden"
-        style={menuStyle}
-        pointerEvents={open ? 'auto' : 'none'}>
+        style={menuStyle}>
         <View
           onLayout={(event) => {
             menuHeight.value = event.nativeEvent.layout.height;

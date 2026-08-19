@@ -3,6 +3,12 @@ import { useTranslation } from 'react-i18next';
 
 import { DisplayText } from '@/components/display-text';
 import { Navbar } from '@/components/navbar';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -160,10 +166,10 @@ function Hero() {
 }
 
 const pets = [
-  { name: 'Milo', breed: 'Golden Retriever', age: '2 yrs', match: 94, icon: Dog, color: 'bg-amber-100' },
-  { name: 'Luna', breed: 'British Shorthair', age: '1 yr', match: 88, icon: Cat, color: 'bg-rose-100' },
-  { name: 'Bella', breed: 'French Bulldog', age: '8 mo', match: 91, icon: Dog, color: 'bg-sky-100' },
-  { name: 'Oreo', breed: 'Labrador', age: '3 yrs', match: 86, icon: Cat, color: 'bg-emerald-100' },
+  { name: 'Milo', breed: 'Golden Retriever', age: '2 yrs', match: 94, icon: Dog },
+  { name: 'Luna', breed: 'British Shorthair', age: '1 yr', match: 88, icon: Cat },
+  { name: 'Bella', breed: 'French Bulldog', age: '8 mo', match: 91, icon: Dog },
+  { name: 'Oreo', breed: 'Labrador', age: '3 yrs', match: 86, icon: Cat },
 ];
 
 function FeaturedPets() {
@@ -334,23 +340,21 @@ function FAQ() {
           title={t('faq.title')}
           description={t('faq.description')}
         />
-        <View className="w-full gap-4">
+        <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
-            <Card key={faq.qKey} className="w-full">
-              <CardHeader className="gap-3">
-                <View className="flex-row gap-3">
-                  <Text className="text-sm font-semibold text-muted-foreground">
-                    {String(index + 1).padStart(2, '0')}
-                  </Text>
-                  <View className="gap-2">
-                    <CardTitle className="text-base">{t(faq.qKey)}</CardTitle>
-                    <CardDescription className="leading-7">{t(faq.aKey)}</CardDescription>
-                  </View>
-                </View>
-              </CardHeader>
-            </Card>
+            <AccordionItem key={faq.qKey} value={faq.qKey}>
+              <AccordionTrigger className="items-center gap-3 py-4">
+                <Text className="w-8 shrink-0 text-sm font-semibold tabular-nums text-muted-foreground">
+                  {String(index + 1).padStart(2, '0')}
+                </Text>
+                <Text className="flex-1 text-base font-medium text-foreground">{t(faq.qKey)}</Text>
+              </AccordionTrigger>
+              <AccordionContent className="ps-11">
+                <Text className="text-sm leading-7 text-muted-foreground">{t(faq.aKey)}</Text>
+              </AccordionContent>
+            </AccordionItem>
           ))}
-        </View>
+        </Accordion>
       </View>
     </View>
   );
@@ -434,17 +438,17 @@ function CTA() {
   return (
     <View className="bg-primary w-full">
       <View className="w-full flex-row flex-wrap items-center justify-between gap-6 px-4 py-16 md:px-10 lg:px-16">
-        <View className="max-w-2xl gap-3">
+        <View className="w-full min-w-0 flex-1 gap-3 sm:max-w-2xl">
           <DisplayText className="text-3xl font-semibold text-primary-foreground md:text-4xl">
             {t('cta.title')}
           </DisplayText>
-          <Text className="text-base leading-7 text-primary-foreground/70">{t('cta.description')}</Text>
+          <Text className="shrink text-base leading-7 text-primary-foreground/70">{t('cta.description')}</Text>
         </View>
-        <View className="flex-row flex-wrap gap-3">
-          <Button size="lg" className="bg-background">
+        <View className="w-full gap-3 sm:w-auto sm:flex-row">
+          <Button size="lg" className="bg-background w-full sm:w-auto">
             <Text className="font-medium text-foreground">{t('cta.primary')}</Text>
           </Button>
-          <Button size="lg" variant="outline" className="border-primary-foreground/30">
+          <Button size="lg" variant="outline" className="border-primary-foreground/30 w-full sm:w-auto">
             <Text className="font-medium text-primary-foreground">{t('cta.secondary')}</Text>
           </Button>
         </View>

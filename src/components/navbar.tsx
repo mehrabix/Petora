@@ -3,7 +3,7 @@ import { Platform, Pressable, ScrollView, View } from 'react-native';
 import * as React from 'react';
 
 import { LanguageSelector } from '@/components/language-selector';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { ThemePicker } from '@/components/theme-picker';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
@@ -56,7 +56,7 @@ export function Navbar() {
         </View>
 
         <View className="flex-row items-center gap-2">
-          <ThemeToggle />
+          <ThemePicker />
           <LanguageSelector />
           <Button variant="ghost" className="hidden sm:flex">
             <Text>{t('nav.signIn')}</Text>

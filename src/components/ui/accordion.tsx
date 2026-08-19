@@ -5,6 +5,7 @@ import * as AccordionPrimitive from '@rn-primitives/accordion';
 import { ChevronDown } from 'lucide-react-native';
 import { Platform, Pressable, View } from 'react-native';
 import Animated, {
+  FadeInDown,
   FadeOutUp,
   LayoutAnimationConfig,
   LinearTransition,
@@ -118,18 +119,21 @@ function AccordionContent({
   children,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
-  const { isExpanded } = AccordionPrimitive.useItemContext();
   return (
     <TextClassContext.Provider value="text-sm">
       <AccordionPrimitive.Content
         className={cn(
           'overflow-hidden',
           Platform.select({
-            web: isExpanded ? 'animate-accordion-down' : 'animate-accordion-up',
+            web: 'data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up',
           })
         )}
+        forceMount={Platform.OS === 'web'}
         {...props}>
         <Animated.View
+          entering={Platform.select({
+            native: FadeInDown.duration(200).reduceMotion(ReduceMotion.System),
+          })}
           exiting={Platform.select({
             native: FadeOutUp.duration(200).reduceMotion(ReduceMotion.System),
           })}

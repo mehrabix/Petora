@@ -25,7 +25,7 @@ export const translations = {
     'pets.title': 'Featured companions',
     'pets.description':
       'Hand-picked pets looking for a loving family, each vet-checked and ready to go home.',
-    'pets.view': 'View {name}',
+    'pets.view': 'View {{name}}',
     'pets.ready': 'Ready to meet',
     'services.eyebrow': 'Why Petora',
     'services.title': 'Care from paw to heart',
@@ -134,7 +134,7 @@ export const translations = {
     'pets.title': 'همنشینهای منتخب',
     'pets.description':
       'حیواناتی که با دقت انتخاب شدهاند و به دنبال خانوادهای مهرباناند؛ همه معاینه شده و آمادهٔ رفتن به خانه.',
-    'pets.view': 'دیدن {name}',
+    'pets.view': 'دیدن {{name}}',
     'pets.ready': 'آمادهٔ آشنایی',
     'services.eyebrow': 'چرا پتورا',
     'services.title': 'مراقبت از پنجه تا قلب',
@@ -242,7 +242,7 @@ export const translations = {
     'pets.title': 'رفقاء مميزون',
     'pets.description':
       'حيوانات منتقاة بعناية تبحث عن عائلة محبة، كلها خضعت للفحص البيطري وجاهزة للعودة إلى المنزل.',
-    'pets.view': 'عرض {name}',
+    'pets.view': 'عرض {{name}}',
     'pets.ready': 'جاهز للقاء',
     'services.eyebrow': 'لماذا Petora',
     'services.title': 'رعاية من المخلب إلى القلب',
@@ -344,7 +344,7 @@ export const translations = {
     'pets.title': 'Compagnons en vedette',
     'pets.description':
       "Des animaux sélectionnés qui cherchent une famille aimante, chacun contrôlé par un vétérinaire et prêt à rentrer.",
-    'pets.view': 'Voir {name}',
+    'pets.view': 'Voir {{name}}',
     'pets.ready': 'Prêt à vous rencontrer',
     'services.eyebrow': 'Pourquoi Petora',
     'services.title': 'Des pattes au cœur',
@@ -404,7 +404,7 @@ export const translations = {
     'pets.title': 'Compañeros destacados',
     'pets.description':
       'Mascotas seleccionadas que buscan una familia amorosa, revisadas por un veterinario y listas para ir a casa.',
-    'pets.view': 'Ver a {name}',
+    'pets.view': 'Ver a {{name}}',
     'pets.ready': 'Listo para conocerte',
     'services.eyebrow': 'Por qué Petora',
     'services.title': 'Cuidado de la pata al corazón',
@@ -464,7 +464,7 @@ export const translations = {
     'pets.title': 'Ausgewählte Begleiter',
     'pets.description':
       'Sorgfältig ausgewählte Haustiere, die eine liebevolle Familie suchen, tierärztlich geprüft und bereit für ihr neues Zuhause.',
-    'pets.view': '{name} ansehen',
+    'pets.view': '{{name}} ansehen',
     'pets.ready': 'Bereit zum Kennenlernen',
     'services.eyebrow': 'Warum Petora',
     'services.title': 'Pflege von Pfote bis Herz',
@@ -524,7 +524,7 @@ export const translations = {
     'pets.title': 'Öne çıkan dostlar',
     'pets.description':
       'Sevgi dolu bir aile arayan, veteriner kontrolünden geçmiş ve yuvaya gitmeye hazır hayvanlar.',
-    'pets.view': '{name} görüntüle',
+    'pets.view': '{{name}} görüntüle',
     'pets.ready': 'Tanışmaya hazır',
     'services.eyebrow': 'Neden Petora',
     'services.title': 'Patiden kalbe bakım',
@@ -584,7 +584,7 @@ export const translations = {
     'pets.title': 'Избранные компаньоны',
     'pets.description':
       'Питомцы, которые ищут любящую семью, проверены ветеринаром и готовы уехать домой.',
-    'pets.view': 'Смотреть {name}',
+    'pets.view': 'Смотреть {{name}}',
     'pets.ready': 'Готов познакомиться',
     'services.eyebrow': 'Почему Petora',
     'services.title': 'Забота от лапки до сердца',
@@ -644,7 +644,7 @@ export const translations = {
     'pets.title': '精选伙伴',
     'pets.description':
       '精心挑选、正在寻找爱心家庭的宠物，每只都经过兽医检查并准备好回家。',
-    'pets.view': '查看 {name}',
+    'pets.view': '查看 {{name}}',
     'pets.ready': '准备好见面',
     'services.eyebrow': '为什么选择 Petora',
     'services.title': '从爪到心的照护',

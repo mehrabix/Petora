@@ -1,3 +1,7 @@
+import { Fraunces_600SemiBold } from '@expo-google-fonts/fraunces/600SemiBold';
+import { Fraunces_700Bold } from '@expo-google-fonts/fraunces/700Bold';
+import { Fraunces_800ExtraBold } from '@expo-google-fonts/fraunces/800ExtraBold';
+import { Fraunces_900Black } from '@expo-google-fonts/fraunces/900Black';
 import { Inter_400Regular } from '@expo-google-fonts/inter/400Regular';
 import { Inter_500Medium } from '@expo-google-fonts/inter/500Medium';
 import { Inter_600SemiBold } from '@expo-google-fonts/inter/600SemiBold';
@@ -31,6 +35,13 @@ const vazirmatnFamilyByWeight: Record<string, string> = {
   '900': 'Vazirmatn_900Black',
 };
 
+const displayFamilyByWeight: Record<string, string> = {
+  '600': 'Fraunces_600SemiBold',
+  '700': 'Fraunces_700Bold',
+  '800': 'Fraunces_800ExtraBold',
+  '900': 'Fraunces_900Black',
+};
+
 const weightByClass: Record<string, string> = {
   'font-thin': '100',
   'font-extralight': '200',
@@ -57,15 +68,28 @@ export function useAppFonts() {
     Vazirmatn_700Bold,
     Vazirmatn_800ExtraBold,
     Vazirmatn_900Black,
+    Fraunces_600SemiBold,
+    Fraunces_700Bold,
+    Fraunces_800ExtraBold,
+    Fraunces_900Black,
   });
 }
 
-export function getFontFamily(isRTL: boolean, className?: string): string {
-  const familyMap = isRTL ? vazirmatnFamilyByWeight : interFamilyByWeight;
+function weightFromClassName(className?: string): string {
   const classes = className?.split(/\s+/) ?? [];
   const weightClass = classes.find((name) => name in weightByClass);
-  const weight = weightClass ? weightByClass[weightClass] : '400';
+  return weightClass ? weightByClass[weightClass] : '400';
+}
+
+export function getFontFamily(isRTL: boolean, className?: string): string {
+  const weight = weightFromClassName(className);
+  const familyMap = isRTL ? vazirmatnFamilyByWeight : interFamilyByWeight;
   return familyMap[weight] ?? familyMap['400'];
+}
+
+export function getDisplayFontFamily(className?: string): string {
+  const weight = weightFromClassName(className);
+  return displayFamilyByWeight[weight] ?? displayFamilyByWeight['600'];
 }
 
 export function FontGate({ children }: { children: React.ReactNode }) {

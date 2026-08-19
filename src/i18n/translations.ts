@@ -4,6 +4,10 @@ export const translations = {
     'nav.getStarted': 'Get started',
     'nav.menu': 'Menu',
     'nav.language': 'Language',
+    'nav.adopt': 'Adopt',
+    'nav.care': 'Care',
+    'nav.about': 'About',
+    'nav.contact': 'Contact',
     'hero.badge': 'Adoption reimagined',
     'hero.titleLine1': 'Every pet deserves',
     'hero.titleLine2': 'a forever home',
@@ -52,6 +56,51 @@ export const translations = {
     'newsletter.placeholder': 'you@example.com',
     'newsletter.subscribe': 'Subscribe',
     'newsletter.note': 'No spam. Just the good stuff.',
+    'how.eyebrow': 'How it works',
+    'how.title': 'A calmer path to adoption',
+    'how.description':
+      'We turn a big decision into a clear, guided process, from first look to the ride home.',
+    'how.step1.title': 'Explore',
+    'how.step1.description':
+      'Browse verified profiles, filter by species, age, energy, and the kind of home you can offer.',
+    'how.step2.title': 'Meet',
+    'how.step2.description':
+      'Ask questions, meet your match in person or over video, and spend real time together.',
+    'how.step3.title': 'Apply',
+    'how.step3.description':
+      'Tell us about your home and routine so we can confirm the match is right for both of you.',
+    'how.step4.title': 'Welcome home',
+    'how.step4.description':
+      'We help with the paperwork, a vet check, and a transition plan. Then the adventure begins.',
+    'impact.eyebrow': 'Our impact',
+    'impact.title': 'The number of lives, changed',
+    'impact.description':
+      'Every number below is a family formed and a home filled with a little more heartbeat.',
+    'impact.counter1': 'Veterinary check-ups',
+    'impact.counter2': 'Microchips placed',
+    'impact.counter3': 'Volunteer hours',
+    'impact.counter4': 'Foster homes',
+    'faq.eyebrow': 'Questions',
+    'faq.title': 'Before you bring someone home',
+    'faq.description':
+      'Clear answers to the questions adopters ask most often.',
+    'faq.q1': 'What does the adoption fee cover?',
+    'faq.a1':
+      'Vaccinations, microchipping, a health check, and often spay or neuter. The fee supports the care of every animal in our program.',
+    'faq.q2': 'Can I meet a pet before applying?',
+    'faq.a2':
+      'Yes. We encourage meet-and-greets in person or by video so you can see if the connection is real.',
+    'faq.q3': 'What if it is not the right fit?',
+    'faq.a3':
+      'Adoptions are a commitment, but if something changes we work with you to find the safest next step for everyone.',
+    'faq.q4': 'Do you adopt outside the city?',
+    'faq.a4':
+      'We review each home individually and can often support adoptions further out through our foster network.',
+    'cta.title': 'Ready to meet your next family member?',
+    'cta.description':
+      'Start with a quick search and meet the animals waiting for someone just like you.',
+    'cta.primary': 'Browse available pets',
+    'cta.secondary': 'Talk to our team',
     'footer.tagline': 'Care for pets, made personal.',
     'footer.adopt': 'Adopt',
     'footer.care': 'Care',
@@ -64,6 +113,10 @@ export const translations = {
     'nav.getStarted': 'شروع کنید',
     'nav.menu': 'منو',
     'nav.language': 'زبان',
+    'nav.adopt': 'پذیرش',
+    'nav.care': 'مراقبت',
+    'nav.about': 'درباره',
+    'nav.contact': 'تماس',
     'hero.badge': 'فرزندخواندگی از نو',
     'hero.titleLine1': 'هر حیوانی سزاوار',
     'hero.titleLine2': 'خانهای همیشگی است',
@@ -108,22 +161,70 @@ export const translations = {
       'از معاینهٔ دامپزشکی تا بستهٔ خوشآمدگویی، همهچیز شخصی بود. لونا در یک روز جا افتاد و بالاخره احساس میکند خانهٔ خودش است.',
     'newsletter.title': 'همیشه در جریان باشید',
     'newsletter.description':
-      'هشدارهای فرزندخواندگی و نکتههای مراقبت از حیوانات را مستقیم در ایمیل خود بگیرید.',
+      'هشدارهای فرزندخواندگی و نکته‌های مراقبت از حیوانات را مستقیم در ایمیل خود بگیرید.',
     'newsletter.placeholder': 'you@example.com',
     'newsletter.subscribe': 'عضویت',
     'newsletter.note': 'بدون هرزنامه. فقط خبرهای خوب.',
-    'footer.tagline': 'مراقبت از حیوانات، شخصیتر.',
+    'how.eyebrow': 'روش کار',
+    'how.title': 'مسیری آرام‌تر برای فرزندخواندگی',
+    'how.description':
+      'ما یک تصمیم بزرگ را به فرایندی شفاف و هدایت‌شده تبدیل می‌کنیم؛ از نخستین نگاه تا راهی خانه شدن.',
+    'how.step1.title': 'کاوش کنید',
+    'how.step1.description':
+      'پروفایل‌های تأییدشده را ببینید و بر اساس گونه، سن، انرژی و نوع خانه‌ای که می‌توانید فراهم کنید فیلتر کنید.',
+    'how.step2.title': 'ملاقات کنید',
+    'how.step2.description':
+      'سؤال بپرسید، حضوری یا ویدیویی با همتای خود دیدار کنید و زمان واقعی را با هم بگذرانید.',
+    'how.step3.title': 'درخواست دهید',
+    'how.step3.description':
+      'از خانه و برنامهٔ روزانه‌تان بگویید تا مطمئن شویم این پیوند برای هر دوی شما درست است.',
+    'how.step4.title': 'به خانه خوش آمدید',
+    'how.step4.description':
+      'ما در کارهای اداری، معاینهٔ دامپزشکی و برنامهٔ انتقال همراه‌تان هستیم. سپس ماجرا آغاز می‌شود.',
+    'impact.eyebrow': 'اثر ما',
+    'impact.title': 'شمار جان‌هایی که تغییر کرد',
+    'impact.description':
+      'هر عدد پایین، خانواده‌ای شکل‌گرفته و خانه‌ای است که کمی بیشتر از ضربان قلب پر شده است.',
+    'impact.counter1': 'معاینه‌های دامپزشکی',
+    'impact.counter2': 'میکروچیپ‌های کاشته‌شده',
+    'impact.counter3': 'ساعت‌های داوطلبانه',
+    'impact.counter4': 'خانه‌های موقت',
+    'faq.eyebrow': 'پرسش‌ها',
+    'faq.title': 'پیش از آنکه کسی را به خانه بیاورید',
+    'faq.description': 'پاسخ روشن به پرتکرارترین پرسش‌های پذیرندگان.',
+    'faq.q1': 'هزینهٔ فرزندخواندگی چه چیزی را پوشش می‌دهد؟',
+    'faq.a1':
+      'واکسیناسیون، میکروچیپ، معاینهٔ سلامت و اغلب عقیم‌سازی. این هزینه از مراقبت همهٔ حیوانات برنامهٔ ما پشتیبانی می‌کند.',
+    'faq.q2': 'آیا می‌توانم پیش از درخواست حیوان را ببینم؟',
+    'faq.a2':
+      'بله. دیدار حضوری یا ویدیویی را تشویق می‌کنیم تا ببینید ارتباط واقعی است یا نه.',
+    'faq.q3': 'اگر مناسب هم نباشیم چه؟',
+    'faq.a3':
+      'فرزندخواندگی یک تعهد است، اما اگر چیزی تغییر کند با شما همراه می‌شویم تا امن‌ترین مسیر بعدی را برای همه پیدا کنیم.',
+    'faq.q4': 'آیا خارج از شهر هم خدمات می‌دهید؟',
+    'faq.a4':
+      'هر خانه را جداگانه بررسی می‌کنیم و اغلب از طریق شبکهٔ خانه‌های موقت می‌توانیم پذیرش در مناطق دورتر را پشتیبانی کنیم.',
+    'cta.title': 'آمادهٔ دیدار عضو بعدی خانواده‌اید؟',
+    'cta.description':
+      'با یک جستجوی سریع شروع کنید و حیواناتی را ببینید که منتظر کسی مثل شما هستند.',
+    'cta.primary': 'دیدن حیوانات موجود',
+    'cta.secondary': 'گفتگو با تیم ما',
+    'footer.tagline': 'مراقبت از حیوانات، شخصی‌تر.',
     'footer.adopt': 'پذیرش',
     'footer.care': 'مراقبت',
     'footer.about': 'درباره',
     'footer.contact': 'تماس',
-    'footer.copyright': '© ۲۰۲۶ پتورا. با عشق برای حیوانات همهجا ساخته شد.',
+    'footer.copyright': '© ۲۰۲۶ پتورا. با عشق برای حیوانات همه‌جا ساخته شد.',
   },
   ar: {
     'nav.signIn': 'تسجيل الدخول',
     'nav.getStarted': 'ابدأ الآن',
     'nav.menu': 'القائمة',
     'nav.language': 'اللغة',
+    'nav.adopt': 'تبنَّ',
+    'nav.care': 'رعاية',
+    'nav.about': 'من نحن',
+    'nav.contact': 'تواصل',
     'hero.badge': 'إعادة تصوّر التبني',
     'hero.titleLine1': 'كل حيوان يستحق',
     'hero.titleLine2': 'منزلاً دائماً',
@@ -172,6 +273,48 @@ export const translations = {
     'newsletter.placeholder': 'you@example.com',
     'newsletter.subscribe': 'اشترك',
     'newsletter.note': 'لا رسائل مزعجة. فقط المفيد.',
+    'how.eyebrow': 'كيف نعمل',
+    'how.title': 'طريق أكثر هدوءاً إلى التبني',
+    'how.description':
+      'نحوّل القرار الكبير إلى رحلة واضحة وموجّهة، من النظرة الأولى إلى العودة إلى المنزل.',
+    'how.step1.title': 'استكشف',
+    'how.step1.description':
+      'تصفح ملفات موثوقة وصفِّها حسب النوع والعمر والنشاط ونوع المنزل الذي يمكنك تقديمه.',
+    'how.step2.title': 'تعرّف',
+    'how.step2.description':
+      'اطرح الأسئلة وقابل رفيقك شخصياً أو عبر الفيديو واقضِ وقتاً حقيقياً معه.',
+    'how.step3.title': 'قدّم طلباً',
+    'how.step3.description':
+      'أخبرنا عن منزلك وروتينك حتى نتأكد من أن التوافق مناسب لكما معاً.',
+    'how.step4.title': 'أهلاً بك في المنزل',
+    'how.step4.description':
+      'نساعدك في الأوراق والفحص البيطري وخطة الانتقال. ثم تبدأ المغامرة.',
+    'impact.eyebrow': 'أثرنا',
+    'impact.title': 'عدد الحيوات التي تغيّرت',
+    'impact.description':
+      'كل رقم أدناه عائلة تشكّلت وبيت امتلأ بنبض قلب إضافي.',
+    'impact.counter1': 'فحوصات بيطرية',
+    'impact.counter2': 'شرائح مزروعة',
+    'impact.counter3': 'ساعات تطوعية',
+    'impact.counter4': 'بيوت احتضان',
+    'faq.eyebrow': 'أسئلة',
+    'faq.title': 'قبل أن تحضر أحداً إلى المنزل',
+    'faq.description': 'إجابات واضحة عن أكثر أسئلة المتبنين شيوعاً.',
+    'faq.q1': 'ماذا تغطي رسوم التبني؟',
+    'faq.a1':
+      'التطعيمات والرقاقة الإلكترونية وفحص الصحة وغالباً التعقيم. الرسوم تدعم رعاية كل حيوان في برنامجنا.',
+    'faq.q2': 'هل يمكنني مقابلة الحيوان قبل تقديم الطلب؟',
+    'faq.a2': 'نعم. نشجع اللقاءات شخصياً أو عبر الفيديو للتأكد من وجود ارتباط حقيقي.',
+    'faq.q3': 'ماذا لو لم يكن التوافق مناسباً؟',
+    'faq.a3':
+      'التبني التزام، لكن إذا تغيّر شيء ما نعمل معك لإيجاد الخطوة التالية الأكثر أماناً للجميع.',
+    'faq.q4': 'هل تتبنّون خارج المدينة؟',
+    'faq.a4':
+      'نراجع كل منزل على حدة، وغالباً يمكننا دعم عمليات التبني في مناطق أبعد عبر شبكة بيوت الاحتضان.',
+    'cta.title': 'مستعد للقاء فرد عائلتك القادم؟',
+    'cta.description': 'ابدأ ببحث سريع وقابل الحيوانات التي تنتظر شخصاً مثلك.',
+    'cta.primary': 'تصفح الحيوانات المتاحة',
+    'cta.secondary': 'تحدث إلى فريقنا',
     'footer.tagline': 'رعاية الحيوانات بشكل شخصي.',
     'footer.adopt': 'تبنَّ',
     'footer.care': 'رعاية',
